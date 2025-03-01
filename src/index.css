@@ -35,7 +35,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    width: 400px;
+    width: 500px;
 }
 
 input {
@@ -51,10 +51,6 @@ input {
 
 input::placeholder {
     color: #707070;
-}
-
-input[type="date"]::placeholder {
-    color: #FF5733; /* Пример: красный цвет */
 }
 
 input:focus {
@@ -75,4 +71,9 @@ button {
 
 button:hover {
     border-color: #646cff;
+}
+
+button:disabled {
+    color: rgba(255, 255, 255, 0.87);
+    opacity: 0.5;
 }

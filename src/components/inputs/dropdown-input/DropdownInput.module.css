@@ -54,17 +54,3 @@
     max-height: 100px;
     transition: max-height 0.2s ease-in;
 }
-
-.inputGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.error {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    color: red;
-    font-size: 0.9rem;
-}

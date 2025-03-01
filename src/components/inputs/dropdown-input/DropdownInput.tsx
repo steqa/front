@@ -35,27 +35,24 @@ export const DropdownInput: FC<DropdownInputProps> = (
 	}
 
 	return (
-		<div className={classes.inputGroup}>
-			<div className={classes.input}>
-				<div
-					className={getLabelClasses()}
-					onClick={() => setIsOpen(!isOpen)}
-				>
-					{label || placeholder}
-				</div>
-				<div className={getContentClasses()}>
-					{Children.map(children, (child) => (
-						cloneElement(child, {
-							onSelect: (value) => {
-								setValue(value)
-								setLabel(child.props.label)
-								setIsOpen(false)
-							}
-						})
-					))}
-				</div>
+		<div className={classes.input}>
+			<div
+				className={getLabelClasses()}
+				onClick={() => setIsOpen(!isOpen)}
+			>
+				{label || placeholder}
 			</div>
-			<div className={classes.error}></div>
+			<div className={getContentClasses()}>
+				{Children.map(children, (child) => (
+					cloneElement(child, {
+						onSelect: (value) => {
+							setValue(value)
+							setLabel(child.props.label)
+							setIsOpen(false)
+						}
+					})
+				))}
+			</div>
 		</div>
 	)
 }
