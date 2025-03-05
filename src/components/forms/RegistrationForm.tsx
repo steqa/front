@@ -1,5 +1,5 @@
-import {Input} from "../inputs/input/Input.tsx";
-import {useEffect, useState} from "react";
+import {Input} from "../input/Input.tsx";
+import {FC, useEffect, useState} from "react";
 import {
 	birthdayValidator,
 	firstNameValidator,
@@ -10,14 +10,22 @@ import {
 	passwordValidator
 } from "../../utils/validators.ts";
 import {useValidator} from "../../hooks/useValidator.ts";
-import {InputErrors} from "../inputs/input-errors/InputErrors.tsx";
-import {DropdownInput} from "../inputs/dropdown-input/DropdownInput.tsx";
-import {DropdownInputOption} from "../inputs/dropdown-input/DropdownInputOption.tsx";
+import {InputErrors} from "../input-errors/InputErrors.tsx";
+import {DropdownInput} from "../dropdown-input/DropdownInput.tsx";
+import {DropdownInputOption} from "../dropdown-input/DropdownInputOption.tsx";
 import classes from "./Form.module.css"
-import {Button} from "../inputs/button/Button.tsx";
+import {Button} from "../button/Button.tsx";
+import {User} from "../../schemas/user.ts";
 
+interface RegistrationFormProps {
+	onSubmit?: (user: User) => void,
+}
 
-export const RegistrationForm = () => {
+export const RegistrationForm: FC<RegistrationFormProps> = (
+	{
+		onSubmit,
+	}
+) => {
 	const [btnIsActive, setBtnIsActive] = useState(false)
 
 	const [login, setLogin, loginValid, loginEmpty, loginErrors] = useValidator<string>("", loginValidator)
@@ -58,6 +66,28 @@ export const RegistrationForm = () => {
 		setBtnIsActive(true)
 	}
 
+	const onSubmit_ = () => {
+		if (
+			loginValid &&
+			firstNameValid &&
+			lastNameValid &&
+			genderValid &&
+			birthdayValid &&
+			passwordValid &&
+			passwordValid
+		) {
+			if (onSubmit) {
+				onSubmit({
+					username: login,
+					firstName: firstName,
+					lastName: lastName,
+					gender: gender,
+					birthday: birthday
+				})
+			}
+		}
+	}
+
 	useEffect(() => {
 		onUpdate()
 	});
@@ -68,7 +98,7 @@ export const RegistrationForm = () => {
 
 	return (
 		<>
-			<form action="" className={classes.form}>
+			<form action="" onSubmit={(e) => e.preventDefault()} className={classes.form}>
 				<Input placeholder="Логин" value={login} setValue={setLogin}/>
 				{loginErrors.length > 0 && (<InputErrors errors={loginErrors}/>)}
 
@@ -79,8 +109,8 @@ export const RegistrationForm = () => {
 				{lastNameErrors.length > 0 && (<InputErrors errors={lastNameErrors}/>)}
 
 				<DropdownInput placeholder={"Пол"} value={gender} setValue={setGender}>
-					<DropdownInputOption value="М" label="Мужской"/>
-					<DropdownInputOption value="Ж" label="Женский"/>
+					<DropdownInputOption value="Мужчина" label="Мужчина"/>
+					<DropdownInputOption value="Женщина" label="Женщина"/>
 				</DropdownInput>
 				{genderErrors.length > 0 && (<InputErrors errors={genderErrors}/>)}
 
@@ -95,7 +125,7 @@ export const RegistrationForm = () => {
 
 				{
 					btnIsActive ?
-						(<Button>Зарегистрироваться</Button>)
+						(<Button onClick={() => onSubmit_()}>Зарегистрироваться</Button>)
 						:
 						(<Button disabled>Зарегистрироваться</Button>)
 				}

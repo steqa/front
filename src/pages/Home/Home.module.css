@@ -1,0 +1,15 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 32px;
+    padding: 8% 0;
+    flex-grow: 1;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
