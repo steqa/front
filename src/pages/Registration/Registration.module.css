@@ -1,0 +1,20 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    gap: 32px;
+    padding: 8% 0;
+    flex-grow: 1;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 500px;
+    min-width: 260px;
+    justify-content: center;
+    flex-grow: 0.7;
+}

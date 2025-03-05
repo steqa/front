@@ -14,6 +14,7 @@ import {InputErrors} from "../inputs/input-errors/InputErrors.tsx";
 import {DropdownInput} from "../inputs/dropdown-input/DropdownInput.tsx";
 import {DropdownInputOption} from "../inputs/dropdown-input/DropdownInputOption.tsx";
 import classes from "./Form.module.css"
+import {Button} from "../inputs/button/Button.tsx";
 
 
 export const RegistrationForm = () => {
@@ -29,7 +30,13 @@ export const RegistrationForm = () => {
 
 	const onUpdate = () => {
 		if (
-			loginEmpty || firstNameEmpty || lastNameEmpty || genderEmpty || birthdayEmpty || passwordEmpty || passwordRepeatEmpty
+			loginEmpty ||
+			firstNameEmpty ||
+			lastNameEmpty ||
+			genderEmpty ||
+			birthdayEmpty ||
+			passwordEmpty ||
+			passwordRepeatEmpty
 		) {
 			setBtnIsActive(false)
 			return
@@ -87,12 +94,10 @@ export const RegistrationForm = () => {
 				{passwordRepeatErrors.length > 0 && (<InputErrors errors={passwordRepeatErrors}/>)}
 
 				{
-					btnIsActive ? (
-							<button>Зарегистрироваться</button>
-						) :
-						(
-							<button disabled={true}>Зарегистрироваться</button>
-						)
+					btnIsActive ?
+						(<Button>Зарегистрироваться</Button>)
+						:
+						(<Button disabled>Зарегистрироваться</Button>)
 				}
 			</form>
 		</>

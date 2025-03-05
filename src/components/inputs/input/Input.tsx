@@ -1,4 +1,5 @@
 import {ChangeEvent, FC} from "react";
+import classes from "./Input.module.css";
 
 interface InputProps {
 	type?: string,
@@ -17,6 +18,7 @@ export const Input: FC<InputProps> = (
 ) => {
 	return (
 		<input
+			className={classes.input}
 			type={type}
 			placeholder={placeholder}
 			value={value}

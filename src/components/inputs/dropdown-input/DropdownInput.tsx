@@ -24,7 +24,7 @@ export const DropdownInput: FC<DropdownInputProps> = (
 	const getLabelClasses = () => {
 		const result = [classes.label]
 		if (label) result.push(classes.bright)
-		if (isOpen) result.push(classes.border)
+		if (isOpen) result.push(classes.focus)
 		return result.join(' ')
 	}
 
